@@ -5,9 +5,9 @@ BUILD_DIR=$1
 POLICY_FILE=$(identify -list policy|grep Path | head -n 1 | sed 's/Path: //')
 
 echo "-----> Replace original file $POLICY_FILE "
-cat $POLICY_FILE | grep -v PDF | tee -a new_$POLICY_FILE
-cat new_$POLICY_FILE
-mv new_$POLICY_FILE $POLICY_FILE
+cat $POLICY_FILE | grep -v PDF | tee -a /tmp/policy.xml
+cat /tmp/policy.xml
+mv /tmp/policy.xml $POLICY_FILE
 
 MAGICK_DIR=$BUILD_DIR/.magick
 
