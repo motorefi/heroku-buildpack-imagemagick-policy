@@ -1,6 +1,11 @@
 #!/bin/sh
 
 BUILD_DIR=$1
+
+POLICY_FILE = $(identify -list policy|grep Path | head -n 1 | sed 's/Path: //')
+
+cat $POLICY_FILE | grep -v PDF | sudo tee -a $POLICY_FILE
+
 MAGICK_DIR=$BUILD_DIR/.magick
 
 if [ -f $MAGICK_DIR/policy.xml ]; then
